@@ -1,4 +1,4 @@
-/* Reset e font base */
+/* RESET BASE */
 * {
   margin: 0;
   padding: 0;
@@ -6,75 +6,75 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* SFONDO */
 body {
-  background: linear-gradient(180deg, #7dd3fc, #fef9c3);
-  color: #333;
+  background: linear-gradient(180deg, #111827, #1e3a8a);
+  color: #fff;
   text-align: center;
   padding: 20px;
   overflow-x: hidden;
 }
 
-/* Sfondo animato */
-canvas#particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* resta sotto tutto */
-  background: linear-gradient(180deg, #7dd3fc, #fef9c3);
-  pointer-events: none;
-}
-
-/* Contenuto principale sopra lo sfondo */
-.hero, main, footer {
+/* TITOLO HERO */
+.hero {
   position: relative;
-  z-index: 2;
+  padding: 80px 20px 50px;
+  overflow: hidden;
 }
 
-/* --- Testata --- */
 .hero-title {
-  font-size: 1.8rem;
-  line-height: 1.3;
-  margin-bottom: 10px;
-  opacity: 0;
-  animation: fadeSlideIn 1.4s ease forwards;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 40px #00eaff;
+  animation: glowPulse 2.5s infinite alternate, fadeIn 1.2s ease-in-out;
+  letter-spacing: 1px;
 }
 
 .highlight {
   color: #facc15;
+  text-shadow: 0 0 15px #facc15, 0 0 25px #facc15;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  color: #444;
-  margin-bottom: 25px;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 0.8s;
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 0 0 5px #00eaff;
+  margin-top: 10px;
+  animation: fadeIn 1.8s ease-in-out;
 }
 
-/* --- Card --- */
+/* EFFETTO LUCI */
+.lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 20%, #00eaff44, transparent 60%),
+              radial-gradient(circle at 80% 40%, #ff00ff44, transparent 60%),
+              radial-gradient(circle at 50% 80%, #00ff6644, transparent 60%);
+  animation: moveLights 6s infinite linear alternate;
+  z-index: -1;
+  filter: blur(50px);
+}
+
+/* CARD */
 .card {
   background: #fff;
+  color: #222;
   padding: 20px;
   margin: 15px auto;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   max-width: 420px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeUp 1s ease forwards;
-  opacity: 0;
+  animation: fadeUp 1s ease both;
 }
 
-.card:nth-child(1) { animation-delay: 0.5s; }
-.card:nth-child(2) { animation-delay: 0.7s; }
-.card:nth-child(3) { animation-delay: 0.9s; }
-.card:nth-child(4) { animation-delay: 1.1s; }
-
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(255,255,255,0.2);
 }
 
 h2 {
@@ -93,7 +93,7 @@ h2 {
   font-size: 1.2rem;
 }
 
-/* --- Bottoni --- */
+/* BOTTONI */
 .map-btn, .whatsapp-btn {
   display: block;
   margin: 12px auto;
@@ -105,11 +105,6 @@ h2 {
   color: #fff;
   font-weight: 600;
   transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.map-btn:hover,
-.whatsapp-btn:hover {
-  transform: scale(1.03);
 }
 
 .map-btn {
@@ -124,55 +119,58 @@ h2 {
   background-color: #f87171;
 }
 
-/* --- Footer --- */
+.map-btn:hover,
+.whatsapp-btn:hover {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
 footer {
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 0.9rem;
-  color: #555;
-  position: relative;
-  z-index: 2;
-  padding-bottom: 40px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeFooter 1.2s ease forwards;
-  animation-delay: 1.6s;
+  color: #ccc;
 }
 
-/* --- Animazioni --- */
+/* PARTICELLE (opzionali) */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: transparent;
+}
+
+/* ANIMAZIONI */
+@keyframes moveLights {
+  0% { background-position: 0% 0%, 100% 50%, 50% 100%; }
+  100% { background-position: 100% 50%, 0% 100%, 50% 0%; }
+}
+
+@keyframes glowPulse {
+  from { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff; }
+  to { text-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff; }
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeFooter {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Responsività --- */
+/* RESPONSIVE */
 @media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
-
   .card {
     padding: 16px;
   }
-
   .map-btn, .whatsapp-btn {
     font-size: 1rem;
   }
